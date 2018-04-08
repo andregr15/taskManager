@@ -106,12 +106,12 @@ RSpec.describe 'Users API', type: :request do
             delete "/users/#{user_id}", params: { }, headers: headers
         end
         
-        context '' do
-            
+        it 'returns status code 204' do
+            expect(response).to have_http_status(204)
         end
 
-        context '' do
-            
+        it 'removes the user from database' do
+            expect(User.find_by(id: user.id)).to be_nil
         end
     end
 
